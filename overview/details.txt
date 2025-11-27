@@ -1,0 +1,33 @@
+Description:
+We are seeking an experienced Solana/DeFi developer to build a simple Decentralized Exchange (DEX), similar to Raydium, and an Automated Market Maker (AMM). The goal is to develop a functional MVP with the following essential requirements:
+
+Key Requirements:
+
+1. Solana Network: On-chain programs (smart contracts) must run on the Solana blockchain.
+2. Use of SPL Tokens: The DEX must use SPL tokens for the base token and quote tokens.
+3. Liquidity Pool (LP) Creation: Ability to create multiple pools between the base token and different quote tokens. An implementation that minimizes the cost of LP creation (deployment, accounts, storage) is preferred.
+4. Simple AMM Model: Implementation of a basic AMM with essential functions such as adding/removing liquidity and exchanging tokens.
+5. Integration with the Jupiter Aggregator: The DEX must be integrated with the Jupiter Aggregator, allowing swaps to be routed and leveraged via Jupiter.
+6. Simple Web Interface: Development of a functional web interface for the MVP that allows:
+    * Connecting to a Solana wallet (Phantom or similar).
+    * Listing available token pairs.
+    * Allowing adding and removing liquidity from pools.
+    * Allowing token swaps.
+7. Fee Optimization: The solution should be optimized so that fees and transactions on the Solana network are reasonable for users.
+
+It is acceptable for the developer to use an existing DEX template or parts of open-source code to accelerate MVP development.
+
+Desired Freelancer Profile:
+
+* Proven experience in Solana network development, with proficiency in Anchor/Rust.
+* History in DeFi projects, focusing on AMMs and Liquidity Pools.
+* Experience with liquidity aggregator integration (knowledge of Jupiter will be a plus).
+* Knowledge of front-end development (React, Vue, or similar technologies) to build a lightweight and efficient user interface.
+
+Deliverables:
+
+* On-chain DEX code (smart contracts/programs).
+* Detailed technical documentation for deployment on testnet and mainnet.
+* Integration and documentation for the Jupiter Aggregator.
+* Minimal and functional front-end for interaction with the DEX.
+* Basic tests covering swap and liquidity addition/removal functionalities.

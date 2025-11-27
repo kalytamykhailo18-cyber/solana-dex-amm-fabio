@@ -1,0 +1,19 @@
+Proposal Description
+
+I can work with Solana using Anchor and Rust to create the simple AMM you need, with pools between SPL tokens, integration with Jupiter, and a lightweight React front-end connecting Phantom.
+
+I have worked on complex blockchain projects such as https://bitsten.app where I handled the critical backend and transaction logic, ensuring security and stability even under high volume.
+I also have solid experience building automation and infrastructure systems, such as at https://simplex.com where it was necessary to resolve sensitive points involving payment validation, wallet flow, and API integration.
+At https://edee.ai I worked implementing advanced data logic and automated responses, ensuring fast operations even under high load. These challenges have helped me create optimized and efficient solutions in critical environments.
+
+For this project, it is important to keep pool creation costs low by structuring accounts and storage in a lean way. It is also good to validate compatibility with Jupiter early on, because small details in the instruction format can break swap routing. Another key point is ensuring that the AMM is simple yet secure, especially in terms of price calculation and slippage control.
+
+My approach to executing the project involves creating smart contracts in Anchor, defining the minimum accounts required for each pool, implementing swap functions and adding or removing liquidity, integrating routing via Jupiter, and building a basic React front-end to connect Phantom, list peers, create pools, add liquidity, and perform swaps. Then I prepare clear documentation for deployment on the testnet and mainnet, along with basic tests covering swaps and liquidity operations.
+
+If you already have a base token or a specific SPL token you want to use in the first pools, it would be good to let me know so I can set up the initial structure.
+
+I will dedicate myself fully to delivering a solid, functional, and ready-to-use MVP within your budget.
+Regards,
+Ustym
+
+PS: In the blockchain ecosystem, I have also launched Vetra VTR, a 1:1 dollar-backed stablecoin on Polygon PoS with Chainlink Functions for real-time reserve verification, and the GreenDash token launched in Southeast Asia.

@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+.yarn/
+
+# Build outputs
+anchor/target/
+frontend/dist/
+frontend/build/
+
+# Environment files (keep .env.example)
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test outputs
+coverage/
+.nyc_output/
+
+# Solana
+test-ledger/
+.anchor/
+
+# Keypairs (NEVER commit)
+*.json
+!package.json
+!tsconfig.json
+!Anchor.toml
+!Cargo.toml
+!scripts/*.json
+
+# Generated files
+scripts/test-tokens.json
+scripts/pool-*.json
+
+# TypeScript
+*.tsbuildinfo
