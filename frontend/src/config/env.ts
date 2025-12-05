@@ -7,8 +7,8 @@ export const config = {
   programId: import.meta.env.VITE_PROGRAM_ID || '',
 
   // App
-  appName: import.meta.env.VITE_APP_NAME || 'SolDEX',
-  appDescription: import.meta.env.VITE_APP_DESCRIPTION || 'Simple Solana DEX',
+  appName: import.meta.env.VITE_APP_NAME || 'DexSpeed',
+  appDescription: import.meta.env.VITE_APP_DESCRIPTION || 'High-Speed Solana DEX for EBK Trading',
 
   // Trading
   defaultSlippageBps: Number(import.meta.env.VITE_DEFAULT_SLIPPAGE_BPS) || 100,

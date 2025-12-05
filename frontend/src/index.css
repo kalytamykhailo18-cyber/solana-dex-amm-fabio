@@ -4,7 +4,7 @@
 
 /* Base styles */
 body {
-  @apply bg-dark-950 text-white antialiased;
+  @apply bg-black-50 text-silver-100 antialiased;
 }
 
 /* Custom scrollbar */
@@ -14,40 +14,47 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-dark-900;
+  @apply bg-black-100;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-dark-700 rounded;
+  @apply bg-silver-700 rounded;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-dark-600;
+  @apply bg-silver-600;
 }
 
 /* Wallet adapter button overrides */
 .wallet-adapter-button {
-  @apply !bg-primary-600 hover:!bg-primary-700 !rounded-lg !font-medium !transition-colors;
+  background: linear-gradient(to right, #f59e0b, #d97706) !important;
+  border-radius: 0.5rem !important;
+  font-weight: 600 !important;
+  transition: all 0.2s !important;
+}
+
+.wallet-adapter-button:hover {
+  background: linear-gradient(to right, #d97706, #b45309) !important;
 }
 
 .wallet-adapter-button-trigger {
-  @apply !bg-primary-600 hover:!bg-primary-700;
+  background: linear-gradient(to right, #f59e0b, #d97706) !important;
 }
 
 .wallet-adapter-modal-wrapper {
-  @apply !bg-dark-800;
+  @apply !bg-black-100;
 }
 
 .wallet-adapter-modal-title {
-  @apply !text-white;
+  @apply !text-silver-100;
 }
 
 .wallet-adapter-modal-list li {
-  @apply !bg-dark-700;
+  @apply !bg-black-200;
 }
 
 .wallet-adapter-modal-list-more {
-  @apply !text-primary-400;
+  @apply !text-gold-400;
 }
 
 /* Input number arrows removal */

@@ -12,7 +12,7 @@ const App: FC = () => {
   return (
     <BrowserRouter>
       <WalletProvider>
-        <div className="min-h-screen bg-dark-950">
+        <div className="min-h-screen bg-black-50">
           <Header />
           <main className="px-4 py-8">
             <Routes>
@@ -26,20 +26,20 @@ const App: FC = () => {
             position="bottom-right"
             toastOptions={{
               style: {
-                background: '#1e293b',
-                color: '#fff',
-                border: '1px solid #334155',
+                background: '#0a0a0a',
+                color: '#f3f4f6',
+                border: '1px solid #4b5563',
               },
               success: {
                 iconTheme: {
-                  primary: '#0ea5e9',
-                  secondary: '#fff',
+                  primary: '#22c55e',
+                  secondary: '#000',
                 },
               },
               error: {
                 iconTheme: {
                   primary: '#ef4444',
-                  secondary: '#fff',
+                  secondary: '#000',
                 },
               },
             }}

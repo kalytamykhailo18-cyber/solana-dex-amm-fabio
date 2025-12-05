@@ -9,17 +9,17 @@ export const Header: FC = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="bg-dark-900 border-b border-dark-700">
+    <header className="bg-black border-b border-silver-800">
       <div className="max-w-7xl mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-8">
             <Link to="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-primary-400 to-primary-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">S</span>
+              <div className="w-8 h-8 bg-gradient-to-br from-gold-400 to-gold-600 rounded-lg flex items-center justify-center shadow-lg shadow-gold-500/20">
+                <span className="text-black font-bold text-lg">D</span>
               </div>
-              <h1 className="text-xl font-bold text-white">{config.appName}</h1>
+              <h1 className="text-xl font-bold bg-gradient-to-r from-gold-400 to-gold-500 text-transparent bg-clip-text">{config.appName}</h1>
             </Link>
-            <span className="text-xs bg-primary-600/20 text-primary-400 px-2 py-1 rounded border border-primary-600/30">
+            <span className="text-xs bg-green-600/20 text-green-400 px-2 py-1 rounded border border-green-600/30">
               {config.network}
             </span>
           </div>
@@ -28,7 +28,7 @@ export const Header: FC = () => {
             <Link
               to="/"
               className={`text-sm font-medium transition ${
-                isActive('/') ? 'text-white' : 'text-gray-400 hover:text-white'
+                isActive('/') ? 'text-gold-400' : 'text-silver-400 hover:text-gold-400'
               }`}
             >
               Pools
@@ -36,7 +36,7 @@ export const Header: FC = () => {
             <Link
               to="/swap"
               className={`text-sm font-medium transition ${
-                isActive('/swap') ? 'text-white' : 'text-gray-400 hover:text-white'
+                isActive('/swap') ? 'text-gold-400' : 'text-silver-400 hover:text-gold-400'
               }`}
             >
               Swap
@@ -44,7 +44,7 @@ export const Header: FC = () => {
             <Link
               to="/liquidity"
               className={`text-sm font-medium transition ${
-                isActive('/liquidity') ? 'text-white' : 'text-gray-400 hover:text-white'
+                isActive('/liquidity') ? 'text-gold-400' : 'text-silver-400 hover:text-gold-400'
               }`}
             >
               Liquidity
@@ -52,12 +52,12 @@ export const Header: FC = () => {
             <Link
               to="/create-pool"
               className={`text-sm font-medium transition ${
-                isActive('/create-pool') ? 'text-white' : 'text-gray-400 hover:text-white'
+                isActive('/create-pool') ? 'text-gold-400' : 'text-silver-400 hover:text-gold-400'
               }`}
             >
               Create Pool
             </Link>
-            <WalletMultiButton className="!bg-primary-600 hover:!bg-primary-700 !rounded-lg !h-10" />
+            <WalletMultiButton className="!bg-gradient-to-r !from-gold-500 !to-gold-600 hover:!from-gold-600 hover:!to-gold-700 !rounded-lg !h-10 !font-semibold !shadow-lg !shadow-gold-500/20" />
           </nav>
         </div>
       </div>
