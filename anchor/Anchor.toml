@@ -8,7 +8,7 @@ skip-lint = false
 dex = "11111111111111111111111111111111"
 
 [programs.mainnet]
-dex = "D49a7ojaFB3DPfJJRKrnNz3XjZEcNGBPZBUHV9MghZqr"
+dex = "EZDyb8s4DgMksN6aPx7gbeZ8B7SjWms3YuXu3VgUT11T"
 
 [registry]
 url = "https://api.apr.dev"

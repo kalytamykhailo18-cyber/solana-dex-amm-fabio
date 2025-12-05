@@ -20,7 +20,7 @@ use instructions::*;
 
 // Program ID (like contract address in EVM)
 // Update after: anchor build → solana address -k target/deploy/dex-keypair.json
-declare_id!("D49a7ojaFB3DPfJJRKrnNz3XjZEcNGBPZBUHV9MghZqr");
+declare_id!("EZDyb8s4DgMksN6aPx7gbeZ8B7SjWms3YuXu3VgUT11T");
 
 #[program]
 pub mod dex {
