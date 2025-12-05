@@ -1,18 +1,20 @@
+[toolchain]
+
 [features]
-seeds = false
+resolution = true
 skip-lint = false
 
 [programs.devnet]
 dex = "11111111111111111111111111111111"
 
 [programs.mainnet]
-dex = "11111111111111111111111111111111"
+dex = "D49a7ojaFB3DPfJJRKrnNz3XjZEcNGBPZBUHV9MghZqr"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "devnet"
+cluster = "Devnet"
 wallet = "~/.config/solana/devnet.json"
 
 [scripts]
