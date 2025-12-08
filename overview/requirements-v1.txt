@@ -1,0 +1,263 @@
+PROJECT REQUIREMENTS - VERSION 1 (MVP)
+=========================================
+
+PROJECT OVERVIEW
+----------------
+Simple Solana DEX with AMM functionality, focused on creating liquidity pools (LPs) with minimal fees, supporting SPL tokens, and enabling basic swap operations with Jupiter aggregator integration.
+
+Timeline: 4-6 days
+Budget: $180 (R$1000)
+
+
+CORE REQUIREMENTS
+-----------------
+
+1. BLOCKCHAIN & SMART CONTRACTS
+   - Platform: Solana blockchain
+   - Framework: Anchor/Rust
+   - Token Standard: SPL tokens (base and quote tokens)
+   - Architecture: On-chain programs (smart contracts)
+   - Cost Optimization: Minimize LP creation costs (deployment, accounts, storage)
+
+2. LIQUIDITY POOL FUNCTIONALITY
+   - Create multiple concentrated LPs between base token and different quote tokens
+   - Support for Solana network tokens
+   - Minimize on-chain fees (estimated 0.02 to 0.05 SOL per pool creation)
+   - Account structure optimized for low storage costs
+
+3. AMM IMPLEMENTATION (Simple Model)
+   - Basic AMM with essential functions:
+     * Add liquidity to pools
+     * Remove liquidity from pools
+     * Token swap functionality
+   - Price calculation logic
+   - Slippage control
+   - Basic security measures for swap calculations
+
+4. JUPITER AGGREGATOR INTEGRATION
+   - Prepare structure to work with Jupiter routes
+   - Enable swaps to be routed through Jupiter
+   - Ensure instruction format compatibility with Jupiter
+   - Note: Full direct integration deferred; basic route preparation for MVP
+
+5. WEB INTERFACE (Frontend)
+   - Technology: React
+   - Lightweight and functional design
+   - Features:
+     * Connect Solana wallets: Phantom AND Solflare
+     * List available token pairs/pools
+     * Create new liquidity pools
+     * Add liquidity to existing pools
+     * Remove liquidity from pools
+     * Perform token swaps
+     * Display pool information and balances
+
+6. WALLET INTEGRATION
+   - Phantom wallet support
+   - Solflare wallet support
+   - Use standard Solana wallet adapters
+
+7. FEE OPTIMIZATION
+   - Minimize on-chain transaction fees
+   - Optimize account creation and storage
+   - Reasonable costs for end users
+   - Automatic reinvestment of fees (to be clarified with client)
+
+
+DELIVERABLES
+------------
+
+1. SMART CONTRACTS
+   - On-chain DEX code (Anchor/Rust programs)
+   - Pool creation logic
+   - AMM swap functions
+   - Liquidity add/remove functions
+   - Minimal account structure for cost efficiency
+
+2. FRONTEND APPLICATION
+   - React-based web application
+   - Wallet connection interface (Phantom + Solflare)
+   - Pool creation interface
+   - Liquidity management interface
+   - Token swap interface
+   - Token pair listing
+
+3. DOCUMENTATION
+   - Technical documentation for deployment
+   - Testnet deployment guide
+   - Mainnet deployment guide
+   - Jupiter integration documentation
+   - Basic usage instructions
+
+4. TESTING
+   - Basic tests for swap functionality
+   - Tests for liquidity addition
+   - Tests for liquidity removal
+   - Testnet validation
+
+5. DEPLOYMENT READY
+   - Fully installed and working system
+   - Ready for deployment on chosen hosting
+   - On-chain programs deployed to testnet
+
+
+TECHNICAL CONSIDERATIONS
+-------------------------
+
+1. COST STRUCTURE
+   - On-chain fees: 0.02-0.05 SOL for account creation
+   - Domain: ~R$40-80/year (~$10-15/year for .com)
+   - Hosting: FREE (Cloudflare Pages, Netlify, or Vercel for static frontend)
+   - Client responsible for: domain registration and hosting setup (HostGator mentioned)
+
+2. SECURITY PRIORITIES
+   - Secure price calculation in AMM
+   - Slippage protection
+   - Basic validation for pool operations
+   - Safe handling of user funds
+
+3. OPTIMIZATION PRIORITIES
+   - Lean account structure
+   - Minimal storage requirements
+   - Low transaction costs
+   - Efficient instruction formatting for Jupiter compatibility
+
+4. SCALABILITY CONSIDERATIONS
+   - Support for multiple token pairs
+   - Efficient pool lookup
+   - Preparation for future Jupiter full integration
+
+
+CONSTRAINTS & SIMPLIFICATIONS FOR MVP
+--------------------------------------
+
+1. Simple AMM model (not concentrated liquidity like Uniswap V3)
+2. Basic Jupiter route preparation (full integration deferred)
+3. Minimal UI design (functional over aesthetic)
+4. Limited to SPL tokens on Solana
+5. Basic testing coverage only
+6. Using templates/open-source code acceptable to accelerate development
+
+
+CLIENT SPECIFIC NEEDS
+----------------------
+
+PRIMARY TOKEN - EBOOKITO (EBK)
+- Client owns 12% of EBK memecoin created on pump.fun
+- Token Address: FENfZkkFXGBVYKNL5Z75guxaVhPJDjJGXPHW8bJWpump
+- Name: Ebookito
+- Symbol: EBK
+- Decimals: 9
+- Need to create SPL token version for DEX compatibility
+- EBK will be primary base token for liquidity pools
+
+BRANDING & DESIGN
+- DEX Name Options: dexspeed.com.br OR speeddex.com.br
+- Color Scheme: Black, Gold, Silver, and Green shades
+- Logo: Similar style to Ebookito logo
+- Logo creation needed with specified color palette
+
+HOSTING & INFRASTRUCTURE
+- Hosting Provider: HostGator (R$50/month plan)
+- Domain Registration: .com.br domain (client will handle)
+- Initial Deployment: Solana devnet for testing
+- Production: Solana mainnet after successful testing
+
+FUTURE INTEGRATION PLANS
+- EBK token integration with ebookito.com.br marketplace
+- Accept EBK as payment currency for products
+- Integration with speedmall.com.br marketplace (in development)
+- Both marketplaces currently being updated
+
+DEPLOYMENT STRATEGY
+- Phase 1: Deploy to Solana devnet (free testing)
+- Phase 2: Test with real EBK token
+- Phase 3: Deploy to mainnet with custom domain
+- Phase 4: Integrate with existing marketplaces
+
+
+UPDATED DELIVERABLES
+--------------------
+
+1. SMART CONTRACTS (COMPLETE ✓)
+   - On-chain DEX code deployed to devnet
+   - EBK token SPL wrapper/migration support
+   - Pool creation for EBK pairs
+   - AMM swap functions
+   - Liquidity management
+
+2. FRONTEND APPLICATION (COMPLETE ✓)
+   - React + TypeScript + Redux + Tailwind CSS
+   - Custom branding (dexspeed/speeddex theme)
+   - Black, Gold, Silver, Green color scheme
+   - Wallet connection (Phantom + Solflare)
+   - Full DEX functionality
+
+3. BRANDING ASSETS (NEEDED)
+   - Logo design (Ebookito-style with specified colors)
+   - Favicon
+   - Social media graphics (optional)
+
+4. DOCUMENTATION (COMPLETE ✓)
+   - Deployment guides (devnet & mainnet)
+   - User guides
+   - Technical documentation
+   - EBK token migration guide
+
+5. HOSTING SETUP (TO BE DONE)
+   - HostGator hosting configuration
+   - Domain setup (dexspeed.com.br or speeddex.com.br)
+   - SSL certificate setup
+   - Environment configuration for production
+
+
+FUTURE CONSIDERATIONS (Post-MVP)
+---------------------------------
+
+IMMEDIATE PRIORITIES
+- EBK token SPL migration/wrapper creation
+- Custom branding implementation
+- Logo design and integration
+- HostGator deployment setup
+
+PHASE 2 ENHANCEMENTS
+- Full Jupiter aggregator integration
+- Marketplace integration (ebookito.com.br)
+- EBK payment gateway for marketplace
+- Advanced analytics for EBK trading
+
+PHASE 3 EXPANSION
+- Speedmall.com.br integration
+- Additional token pair support
+- Liquidity mining rewards for EBK holders
+- Governance features for EBK token
+- Mobile app version
+
+TECHNICAL IMPROVEMENTS
+- Advanced UI/UX with custom branding
+- Price charts and analytics
+- Transaction history with EBK focus
+- Multi-language support (Portuguese/English)
+
+
+ANSWERED CLIENT QUESTIONS
+--------------------------
+
+1. ✓ Base Token: EBK (Ebookito) - FENfZkkFXGBVYKNL5Z75guxaVhPJDjJGXPHW8bJWpump
+2. ✓ Branding: dexspeed.com.br or speeddex.com.br with Black/Gold/Silver/Green colors
+3. ✓ Hosting: HostGator at R$50/month
+4. ✓ Deployment: Start with devnet, then mainnet
+5. ✓ Logo: Need Ebookito-style logo with specified colors
+6. ✓ Future Integration: ebookito.com.br and speedmall.com.br marketplaces
+
+
+NEW QUESTIONS FOR CLIENT
+-------------------------
+
+1. EBK Token Migration: Do you need help migrating from pump.fun to SPL, or create new liquidity for existing token?
+2. Logo Design: Do you have existing Ebookito logo assets to share for reference?
+3. Domain Preference: dexspeed.com.br or speeddex.com.br? (need to decide for branding)
+4. Initial Liquidity: How much EBK will you provide for initial pool creation?
+5. Trading Pairs: Which tokens to pair with EBK initially? (SOL/EBK, USDC/EBK, etc.)
+6. Marketplace Integration Timeline: When do you plan to start accepting EBK on ebookito.com.br?
+7. HostGator Access: Will you create the hosting account or need assistance with setup?

@@ -37,3 +37,21 @@ The only mandatory expense is the small on-chain fee from Solana, which is very 
 
 he:
 Okay, I'll check with HostGenerator to arrange hosting and also find a good domain name to register.
+
+I'm looking at HostGator to sign up for a hosting plan and purchase a domain. Wouldn't it be better if I sent you the prices and you could handle the sign-up and domain purchase directly? Once everything is set up correctly, you can transfer the funds to me.
+This would make it easier to access and install DeX.
+You could do everything without needing my presence.
+
+me:
+Don't try to buy the domain now.
+I'll test it on my test network first.
+
+he:
+Perfect, I have the funds set aside for the domain purchase and the hosting payment.
+If you have any questions, you can send me a message on WhatsApp +55 (21) 99835-6976
+But if possible, please send the messages in Portuguese.
+
+he:
+Good afternoon, I would like to know how much it would cost to add a meme token creation module, similar to a mini pump.fun , leveraging the existing DEX structure. This would allow us to utilize several existing DEX features and add only a few additional functions.
+
+

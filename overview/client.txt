@@ -1,0 +1,30 @@
+I own 12% of the tokens from memecoins EBOOKITO (EBK).
+
+FENfZkkFXGBVYKNL5Z75guxaVhPJDjJGXPHW8bJWpump
+
+It was created on pump.fun
+
+Nome: Ebookito
+
+Symbol: EBK
+
+Decimal places: 9
+
+It would be good to create an SPL token for EBK to work directly on the DEX.
+
+The name of the Dex could be dexspeed.com.br or speeddex.com.br.
+
+Can you create a logo? Like the ebookito logo?
+
+If I were to create the logo, I would like to use the colors black, gold, silver, and shades of green; that would be great for the Dex and the logo.
+
+See if you can use HostGator for hosting; they have a plan for R$50.00 per month.
+
+We can test it first in the Deploy on Solana devnet (free testing environment).
+
+I need to make some adjustments to the ebookito.com.br marketplace; in the future, I plan to use ebk tokens to be accepted as currency for purchasing products on the ebookito marketplace.
+
+I also have another project underway, the marketplace www.speedmall.com.br , but both are being updated, and I'm trying to get them up and running.
+
+https://pump.fun/coin/FENfZkkFXGBVYKNL5Z75guxaVhPJDjJGXPHW8bJWpump
+
