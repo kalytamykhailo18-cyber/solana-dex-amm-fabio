@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { WalletButton } from './WalletButton';
 import { config } from '../config/env';
 
 export const Header: FC = () => {
@@ -57,7 +57,7 @@ export const Header: FC = () => {
             >
               Create Pool
             </Link>
-            <WalletMultiButton className="!bg-gradient-to-r !from-gold-500 !to-gold-600 hover:!from-gold-600 hover:!to-gold-700 !rounded-lg !h-10 !font-semibold !shadow-lg !shadow-gold-500/20" />
+            <WalletButton />
           </nav>
         </div>
       </div>
