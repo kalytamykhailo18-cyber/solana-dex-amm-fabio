@@ -11,6 +11,7 @@ export default defineConfig({
   resolve: {
     alias: {
       buffer: 'buffer',
+      process: 'process/browser',
     },
   },
   optimizeDeps: {
@@ -19,5 +20,6 @@ export default defineConfig({
         global: 'globalThis',
       },
     },
+    include: ['buffer', 'process'],
   },
 })

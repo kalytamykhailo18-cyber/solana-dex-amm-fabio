@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { WalletButton } from './WalletButton';
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { config } from '../config/env';
 
 export const Header: FC = () => {
@@ -57,7 +57,7 @@ export const Header: FC = () => {
             >
               Create Pool
             </Link>
-            <WalletButton />
+            <WalletMultiButton />
           </nav>
         </div>
       </div>

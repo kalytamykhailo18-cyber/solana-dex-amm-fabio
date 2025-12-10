@@ -4,6 +4,7 @@ import { Program, AnchorProvider } from '@coral-xyz/anchor';
 import { PublicKey } from '@solana/web3.js';
 import { config } from '../config/env';
 import { IDL } from '../idl/dex';
+import { Buffer } from 'buffer';
 
 export const useProgram = () => {
   const { connection } = useConnection();
@@ -13,6 +14,8 @@ export const useProgram = () => {
     if (!wallet.publicKey || !wallet.signTransaction || !wallet.signAllTransactions) {
       return null;
     }
+    console.log(wallet.publicKey);
+    
     return new AnchorProvider(
       connection,
       {
@@ -25,13 +28,16 @@ export const useProgram = () => {
   }, [connection, wallet]);
 
   const program = useMemo(() => {
-    if (!provider || !config.programId) return null;
+    if (!provider) return null;
+
+    // Ensure Buffer is available globally
+    if (typeof window !== 'undefined' && !window.Buffer) {
+      window.Buffer = Buffer;
+    }
+
     try {
-      return new Program(
-        IDL,
-        new PublicKey(config.programId),
-        provider
-      );
+      // The program ID is now in the IDL itself
+      return new Program(IDL, provider);
     } catch (error) {
       console.error('Failed to create program:', error);
       return null;

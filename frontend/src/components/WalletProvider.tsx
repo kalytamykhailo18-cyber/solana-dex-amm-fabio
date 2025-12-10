@@ -1,7 +1,6 @@
-import { FC, ReactNode, useMemo, useEffect } from 'react';
+import { FC, ReactNode, useEffect } from 'react';
 import { ConnectionProvider, WalletProvider as SolanaWalletProvider, useWallet } from '@solana/wallet-adapter-react';
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
-import { PhantomWalletAdapter, SolflareWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { config } from '../config/env';
 import { useAppDispatch } from '../store/hooks';
 import { setWallet, disconnectWallet } from '../store/walletSlice';
@@ -30,17 +29,9 @@ const WalletSync: FC<{ children: ReactNode }> = ({ children }) => {
 export const WalletProvider: FC<Props> = ({ children }) => {
   const endpoint = config.rpcUrl;
 
-  const wallets = useMemo(
-    () => [
-      new PhantomWalletAdapter(),
-      new SolflareWalletAdapter(),
-    ],
-    []
-  );
-
   return (
     <ConnectionProvider endpoint={endpoint}>
-      <SolanaWalletProvider wallets={wallets} autoConnect>
+      <SolanaWalletProvider wallets={[]} autoConnect={false}>
         <WalletModalProvider>
           <WalletSync>
             {children}

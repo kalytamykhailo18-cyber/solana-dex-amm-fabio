@@ -220,6 +220,12 @@ dist/assets/index-xxxxx.js      740.38 kB
 
 ---
 
+https://chromewebstore.google.com/detail/phantom/bfnaelmomeimhlpmgjnjophhpkkoljpa
+https://chromewebstore.google.com/detail/solflare-wallet/bhhhlbepdkbapadjdnnojkbgioiodbic
+
+
+https://phantext.com/wall
+
 ### Step 6: Test Locally (15 minutes)
 
 ```bash

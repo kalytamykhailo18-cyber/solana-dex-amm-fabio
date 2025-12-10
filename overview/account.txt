@@ -2,3 +2,24 @@ solflare_address=34PqjLDn1jivjN3cLZ3q2EaqXQC6iNn2fJmuKGsrR14B
 solflare_private_key=[99,124,228,13,76,234,160,83,10,101,61,68,136,18,115,224,18,116,251,251,167,213,1,242,55,32,168,85,125,176,128,32,30,149,241,22,6,60,170,188,112,214,173,33,125,153,223,168,70,146,80,89,68,190,228,190,92,234,194,79,71,109,184,136]
 phantom_address=Fu8Zz6oShdTMHnmxFeP7bWQmekvKZSYaUn4HbyGm1JD2
 phantom_private_key=4UNqvpAFfUUjo7h2madWKH9XhfHFkeqcncKDdCtA21vkYjuvTkLrCaHqT6zcGnBw4ReuDNL14FyLR8UtbYm2dSHi
+
+
+
+test wallet: {
+    phantom: {
+        recovery phrase: [
+            gate state meadow file drink carbon wrestle glow exit submit liquid discover
+        ],
+        private_key: 36cBsXyJxkrDm6vY5yZXVcHUpS4hN5Gmb7zawY9NX73RFaSjmMVbwU9YV29n2cXexrYRhv8dqH3Vcsys7RRhc5gU,
+        public_key: mmCsfc6ET5sQcThzxSSQ4MNbdwcRZQiAE4cP95yXvdn
+    },
+    solflare: {
+        recovery_phrase: [
+            jewel soul excuse range romance panic lock couple humble quiz velvet fossil
+        ],
+        private_key: [
+            33,241,80,54,87,111,8,202,53,168,5,189,176,69,18,209,224,80,207,28,2,226,85,24,71,176,28,21,43,247,95,64,178,228,66,179,208,125,173,184,24,231,128,90,147,146,233,149,65,140,56,70,50,54,58,46,164,213,5,255,26,8,33,155
+        ],
+        public_key: D3KSoxnVUR227sHvpp7WJKrgtb54wqyKsCXvmiXrHgoc
+    }
+}

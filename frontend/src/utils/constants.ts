@@ -1,4 +1,5 @@
 import { PublicKey } from '@solana/web3.js';
+import { Buffer } from 'buffer';
 
 // PDA Seeds
 export const POOL_SEED = Buffer.from('pool');

@@ -1,9 +1,10 @@
 import { FC, useState, useRef, useEffect } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useWalletModal } from '@solana/wallet-adapter-react-ui';
+import toast from 'react-hot-toast';
 
 export const WalletButton: FC = () => {
-  const { publicKey, disconnect, wallet } = useWallet();
+  const { publicKey, disconnect, wallet, connect, connecting } = useWallet();
   const { setVisible } = useWalletModal();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -20,13 +21,26 @@ export const WalletButton: FC = () => {
   }, []);
 
   const handleDisconnect = async () => {
-    await disconnect();
-    setIsDropdownOpen(false);
+    try {
+      await disconnect();
+      setIsDropdownOpen(false);
+      toast.success('Wallet disconnected');
+    } catch (error) {
+      console.error('Failed to disconnect:', error);
+      toast.error('Failed to disconnect wallet');
+    }
   };
 
-  const handleChangeWallet = () => {
-    setVisible(true);
-    setIsDropdownOpen(false);
+  const handleChangeWallet = async () => {
+    try {
+      await disconnect();
+      setIsDropdownOpen(false);
+      setVisible(true);
+    } catch (error) {
+      console.error('Failed to change wallet:', error);
+      setIsDropdownOpen(false);
+      setVisible(true);
+    }
   };
 
   const formatAddress = (address: string) => {
@@ -37,9 +51,10 @@ export const WalletButton: FC = () => {
     return (
       <button
         onClick={() => setVisible(true)}
-        className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold px-6 py-2.5 rounded-lg shadow-lg shadow-gold-500/20 transition-all"
+        disabled={connecting}
+        className="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-black font-semibold px-6 py-2.5 rounded-lg shadow-lg shadow-gold-500/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Connect Wallet
+        {connecting ? 'Connecting...' : 'Connect Wallet'}
       </button>
     );
   }

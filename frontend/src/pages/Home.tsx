@@ -18,17 +18,26 @@ export const Home: FC = () => {
       </div>
 
       <div className="grid md:grid-cols-3 gap-4 mb-8">
-        <div className="bg-gradient-to-br from-black-100 to-black-200 border border-silver-800 rounded-xl p-6 text-center hover:border-gold-500/50 transition-all">
+        <div
+          onClick={() => navigate('/swap')}
+          className="bg-gradient-to-br from-black-100 to-black-200 border border-silver-800 rounded-xl p-6 text-center hover:border-gold-500/50 transition-all cursor-pointer"
+        >
           <div className="text-3xl mb-2">⚡</div>
           <h3 className="text-lg font-bold text-gold-400 mb-1">Swap Tokens</h3>
           <p className="text-sm text-silver-400">Exchange tokens instantly with minimal fees</p>
         </div>
-        <div className="bg-gradient-to-br from-black-100 to-black-200 border border-silver-800 rounded-xl p-6 text-center hover:border-gold-500/50 transition-all">
+        <div
+          onClick={() => navigate('/liquidity')}
+          className="bg-gradient-to-br from-black-100 to-black-200 border border-silver-800 rounded-xl p-6 text-center hover:border-gold-500/50 transition-all cursor-pointer"
+        >
           <div className="text-3xl mb-2">💰</div>
           <h3 className="text-lg font-bold text-gold-400 mb-1">Provide Liquidity</h3>
           <p className="text-sm text-silver-400">Earn fees by adding liquidity to pools</p>
         </div>
-        <div className="bg-gradient-to-br from-black-100 to-black-200 border border-silver-800 rounded-xl p-6 text-center hover:border-gold-500/50 transition-all">
+        <div
+          onClick={() => navigate('/create-pool')}
+          className="bg-gradient-to-br from-black-100 to-black-200 border border-silver-800 rounded-xl p-6 text-center hover:border-gold-500/50 transition-all cursor-pointer"
+        >
           <div className="text-3xl mb-2">📊</div>
           <h3 className="text-lg font-bold text-gold-400 mb-1">Create Pools</h3>
           <p className="text-sm text-silver-400">Start new liquidity pools for any token pair</p>

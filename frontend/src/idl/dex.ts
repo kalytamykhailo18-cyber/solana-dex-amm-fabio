@@ -8,6 +8,7 @@ export type Dex = {
 };
 
 export const IDL: any = {
+  address: 'EZDyb8s4DgMksN6aPx7gbeZ8B7SjWms3YuXu3VgUT11T',
   version: '0.1.0',
   name: 'dex',
   instructions: [
