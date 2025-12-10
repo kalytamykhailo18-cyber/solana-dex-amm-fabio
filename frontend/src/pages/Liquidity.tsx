@@ -14,15 +14,15 @@ export const Liquidity: FC = () => {
   return (
     <div className="max-w-6xl mx-auto">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-white mb-2">Manage Liquidity</h1>
-        <p className="text-gray-400">Add or remove liquidity from pools and earn fees</p>
+        <h1 className="text-3xl font-bold text-white mb-2 animate-flip-down animate-normal">Manage Liquidity</h1>
+        <p className="text-gray-400 animate-fade-up animate-fast animate-delay-200">Add or remove liquidity from pools and earn fees</p>
       </div>
 
       <div className="grid lg:grid-cols-2 gap-8">
-        <div>
+        <div className="animate-fade-right animate-slow animate-delay-300">
           <LiquidityCard poolAddress={poolAddress} />
         </div>
-        <div>
+        <div className="animate-fade-left animate-slow animate-delay-400">
           <PoolList onSelectPool={handleSelectPool} selectedPool={poolAddress} />
         </div>
       </div>

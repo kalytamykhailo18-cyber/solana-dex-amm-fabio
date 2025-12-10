@@ -81,3 +81,220 @@ input[type="number"] {
 .animate-pulse-slow {
   animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+/* ============================================ */
+/* ANIMATION SYSTEM */
+/* ============================================ */
+
+/* Keyframes for fade animations */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-left {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-right {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes zoom-out {
+  from {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes flip-up {
+  from {
+    opacity: 0;
+    transform: perspective(600px) rotateX(-90deg);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(600px) rotateX(0);
+  }
+}
+
+@keyframes flip-down {
+  from {
+    opacity: 0;
+    transform: perspective(600px) rotateX(90deg);
+  }
+  to {
+    opacity: 1;
+    transform: perspective(600px) rotateX(0);
+  }
+}
+
+/* Animation direction classes */
+.animate-fade-up {
+  animation-name: fade-up;
+  animation-fill-mode: both;
+}
+
+.animate-fade-down {
+  animation-name: fade-down;
+  animation-fill-mode: both;
+}
+
+.animate-fade-left {
+  animation-name: fade-left;
+  animation-fill-mode: both;
+}
+
+.animate-fade-right {
+  animation-name: fade-right;
+  animation-fill-mode: both;
+}
+
+.animate-zoom-in {
+  animation-name: zoom-in;
+  animation-fill-mode: both;
+}
+
+.animate-zoom-out {
+  animation-name: zoom-out;
+  animation-fill-mode: both;
+}
+
+.animate-flip-up {
+  animation-name: flip-up;
+  animation-fill-mode: both;
+}
+
+.animate-flip-down {
+  animation-name: flip-down;
+  animation-fill-mode: both;
+}
+
+/* Duration classes */
+.animate-very-fast {
+  animation-duration: 200ms;
+}
+
+.animate-fast {
+  animation-duration: 400ms;
+}
+
+.animate-normal {
+  animation-duration: 600ms;
+}
+
+.animate-light-slow {
+  animation-duration: 800ms;
+}
+
+.animate-slow {
+  animation-duration: 1000ms;
+}
+
+.animate-very-slow {
+  animation-duration: 1200ms;
+}
+
+/* Delay classes for staggered animations */
+.animate-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animate-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animate-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animate-delay-400 {
+  animation-delay: 400ms;
+}
+
+.animate-delay-500 {
+  animation-delay: 500ms;
+}
+
+.animate-delay-600 {
+  animation-delay: 600ms;
+}
+
+.animate-delay-700 {
+  animation-delay: 700ms;
+}
+
+.animate-delay-800 {
+  animation-delay: 800ms;
+}
+
+.animate-delay-900 {
+  animation-delay: 900ms;
+}
+
+.animate-delay-1000 {
+  animation-delay: 1000ms;
+}
+
+/* Easing functions */
+.animate-ease-in {
+  animation-timing-function: ease-in;
+}
+
+.animate-ease-out {
+  animation-timing-function: ease-out;
+}
+
+.animate-ease-in-out {
+  animation-timing-function: ease-in-out;
+}
+
+.animate-ease-bounce {
+  animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}

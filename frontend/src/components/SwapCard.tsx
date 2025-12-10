@@ -132,7 +132,7 @@ export const SwapCard: FC<Props> = ({ poolAddress }) => {
 
   return (
     <div className="bg-dark-800 rounded-xl p-6 max-w-md mx-auto">
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center mb-6 animate-fade-down animate-fast">
         <h2 className="text-xl font-bold text-white">Swap</h2>
         <div className="flex items-center gap-2">
           <span className="text-sm text-gray-400">Slippage:</span>
@@ -151,7 +151,7 @@ export const SwapCard: FC<Props> = ({ poolAddress }) => {
 
       <div className="space-y-4">
         {/* Input Token */}
-        <div className="bg-dark-900 rounded-lg p-4">
+        <div className="bg-dark-900 rounded-lg p-4 animate-fade-up animate-normal animate-delay-100">
           <div className="flex justify-between items-center mb-2">
             <span className="text-sm text-gray-400">You Pay</span>
             <span className="text-sm text-gray-400">
@@ -181,7 +181,7 @@ export const SwapCard: FC<Props> = ({ poolAddress }) => {
         </div>
 
         {/* Swap Direction Button */}
-        <div className="flex justify-center -my-2 relative z-10">
+        <div className="flex justify-center -my-2 relative z-10 animate-zoom-in animate-fast animate-delay-200">
           <button
             onClick={handleSwapDirection}
             className="bg-dark-700 hover:bg-dark-800 border-4 border-dark-800 p-2 rounded-xl transition"
@@ -203,7 +203,7 @@ export const SwapCard: FC<Props> = ({ poolAddress }) => {
         </div>
 
         {/* Output Token */}
-        <div className="bg-dark-900 rounded-lg p-4">
+        <div className="bg-dark-900 rounded-lg p-4 animate-fade-up animate-normal animate-delay-300">
           <div className="flex justify-between items-center mb-2">
             <span className="text-sm text-gray-400">You Receive</span>
             <span className="text-sm text-gray-400">
@@ -228,7 +228,7 @@ export const SwapCard: FC<Props> = ({ poolAddress }) => {
 
         {/* Pool Info */}
         {poolData && (
-          <div className="bg-dark-900/50 rounded-lg p-3 text-sm space-y-1">
+          <div className="bg-dark-900/50 rounded-lg p-3 text-sm space-y-1 animate-fade-up animate-fast animate-delay-400">
             <div className="flex justify-between text-gray-400">
               <span>Fee</span>
               <span>{poolData.feeRateBps / 100}%</span>
@@ -248,7 +248,7 @@ export const SwapCard: FC<Props> = ({ poolAddress }) => {
         <button
           onClick={handleSwap}
           disabled={!connected || loading || !amountIn || !amountOut}
-          className="w-full bg-primary-600 hover:bg-primary-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition"
+          className="w-full bg-primary-600 hover:bg-primary-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition animate-zoom-in animate-normal animate-delay-500"
         >
           {!connected
             ? 'Connect Wallet'

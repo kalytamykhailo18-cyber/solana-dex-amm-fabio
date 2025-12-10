@@ -1,12 +1,15 @@
 import { useMemo } from 'react';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { Program, AnchorProvider } from '@coral-xyz/anchor';
-import { PublicKey } from '@solana/web3.js';
-import { config } from '../config/env';
+import { Connection } from '@solana/web3.js';
 import { IDL } from '../idl/dex';
 import { Buffer } from 'buffer';
 
-export const useProgram = () => {
+export const useProgram = (): {
+  program: Program | null;
+  provider: AnchorProvider | null;
+  connection: Connection;
+} => {
   const { connection } = useConnection();
   const wallet = useWallet();
 
@@ -15,7 +18,7 @@ export const useProgram = () => {
       return null;
     }
     console.log(wallet.publicKey);
-    
+
     return new AnchorProvider(
       connection,
       {
@@ -27,7 +30,7 @@ export const useProgram = () => {
     );
   }, [connection, wallet]);
 
-  const program = useMemo(() => {
+  const program = useMemo((): Program | null => {
     if (!provider) return null;
 
     // Ensure Buffer is available globally

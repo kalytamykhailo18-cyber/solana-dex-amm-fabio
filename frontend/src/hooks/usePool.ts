@@ -42,7 +42,7 @@ export const usePool = () => {
   const getPoolData = useCallback(async (poolPda: PublicKey): Promise<PoolData | null> => {
     if (!program) return null;
     try {
-      const poolAccount = await program.account.pool.fetch(poolPda);
+      const poolAccount = await (program.account as any).pool.fetch(poolPda);
 
       // Get vault balances
       const tokenAVaultAccount = await getAccount(connection, poolAccount.tokenAVault);
@@ -129,7 +129,7 @@ export const usePool = () => {
 
     setLoading(true);
     try {
-      const poolAccount = await program.account.pool.fetch(poolPda);
+      const poolAccount = await (program.account as any).pool.fetch(poolPda);
 
       const userTokenA = await getAssociatedTokenAddress(poolAccount.tokenAMint, wallet.publicKey);
       const userTokenB = await getAssociatedTokenAddress(poolAccount.tokenBMint, wallet.publicKey);
@@ -185,7 +185,7 @@ export const usePool = () => {
 
     setLoading(true);
     try {
-      const poolAccount = await program.account.pool.fetch(poolPda);
+      const poolAccount = await (program.account as any).pool.fetch(poolPda);
 
       const userTokenA = await getAssociatedTokenAddress(poolAccount.tokenAMint, wallet.publicKey);
       const userTokenB = await getAssociatedTokenAddress(poolAccount.tokenBMint, wallet.publicKey);
@@ -254,7 +254,7 @@ export const usePool = () => {
 
     setLoading(true);
     try {
-      const poolAccount = await program.account.pool.fetch(poolPda);
+      const poolAccount = await (program.account as any).pool.fetch(poolPda);
 
       const tokenInMint = swapAToB ? poolAccount.tokenAMint : poolAccount.tokenBMint;
       const tokenOutMint = swapAToB ? poolAccount.tokenBMint : poolAccount.tokenAMint;

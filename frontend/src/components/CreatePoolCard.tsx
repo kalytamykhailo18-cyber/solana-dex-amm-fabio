@@ -136,11 +136,11 @@ export const CreatePoolCard: FC<Props> = ({ onPoolCreated }) => {
 
         {/* Fee Rate */}
         <div>
-          <label className="block text-sm text-gray-400 mb-2">Swap Fee Rate (%)</label>
+          <label className="block text-sm mb-2">Swap Fee Rate (%)</label>
           <select
             value={feeRate}
             onChange={(e) => setFeeRate(e.target.value)}
-            className="w-full bg-dark-900 border border-dark-700 rounded-lg px-4 py-3 text-white outline-none focus:border-primary-500 transition"
+            className="w-full bg-dark-900 text-[#555] border border-dark-700 rounded-lg px-4 py-3 outline-none focus:border-primary-500 transition"
           >
             <option value="0.1">0.1% (Low fee)</option>
             <option value="0.3">0.3% (Standard)</option>

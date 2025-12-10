@@ -31,7 +31,7 @@ export const PoolList: FC<Props> = ({ onSelectPool, selectedPool }) => {
     setLoading(true);
     try {
       // Fetch all pool accounts
-      const poolAccounts = await program.account.pool.all();
+      const poolAccounts = await (program.account as any).pool.all();
 
       const poolInfos: PoolInfo[] = await Promise.all(
         poolAccounts.map(async (account) => {
@@ -94,7 +94,7 @@ export const PoolList: FC<Props> = ({ onSelectPool, selectedPool }) => {
 
   return (
     <div className="bg-dark-800 rounded-xl p-6">
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center mb-6 animate-fade-down animate-fast">
         <h2 className="text-xl font-bold text-white">Liquidity Pools</h2>
         <button
           onClick={loadPools}
@@ -106,7 +106,7 @@ export const PoolList: FC<Props> = ({ onSelectPool, selectedPool }) => {
       </div>
 
       {/* Manual Pool Address Input */}
-      <div className="mb-6">
+      <div className="mb-6 animate-fade-up animate-normal animate-delay-100">
         <label className="block text-sm text-gray-400 mb-2">Or enter pool address manually:</label>
         <div className="flex gap-2">
           <input
@@ -143,15 +143,16 @@ export const PoolList: FC<Props> = ({ onSelectPool, selectedPool }) => {
         </div>
       ) : (
         <div className="space-y-3">
-          {pools.map((pool) => (
+          {pools.map((pool, index) => (
             <div
               key={pool.address}
               onClick={() => onSelectPool && onSelectPool(pool.address)}
-              className={`p-4 rounded-lg cursor-pointer transition ${
+              className={`p-4 rounded-lg cursor-pointer transition animate-fade-left animate-fast ${
                 selectedPool === pool.address
                   ? 'bg-primary-600/20 border border-primary-500'
                   : 'bg-dark-900 hover:bg-dark-700 border border-transparent'
               }`}
+              style={{ animationDelay: `${200 + index * 100}ms` }}
             >
               <div className="flex justify-between items-start mb-2">
                 <div>
