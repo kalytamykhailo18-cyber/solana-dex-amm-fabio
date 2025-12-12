@@ -3,8 +3,6 @@ solflare_private_key=[99,124,228,13,76,234,160,83,10,101,61,68,136,18,115,224,18
 phantom_address=Fu8Zz6oShdTMHnmxFeP7bWQmekvKZSYaUn4HbyGm1JD2
 phantom_private_key=4UNqvpAFfUUjo7h2madWKH9XhfHFkeqcncKDdCtA21vkYjuvTkLrCaHqT6zcGnBw4ReuDNL14FyLR8UtbYm2dSHi
 
-
-
 test wallet: {
     phantom: {
         recovery phrase: [
@@ -23,3 +21,85 @@ test wallet: {
         public_key: D3KSoxnVUR227sHvpp7WJKrgtb54wqyKsCXvmiXrHgoc
     }
 }
+
+
+═══════════════════════════════════════════════════════════════════
+LIQUIDITY POOL ACCOUNTS STRUCTURE
+═══════════════════════════════════════════════════════════════════
+
+POOL ACCOUNT: 8AP5aG8B6nWLAJQBpRq3kUQjLo1bn2KufRzCpPhZMp23
+├─ Type: Program Derived Address (PDA) - Main pool state account
+├─ Owner: EZDyb8s4DgMksN6aPx7gbeZ8B7SjWms3YuXu3VgUT11T (DEX Program)
+├─ Purpose: Stores all pool configuration and state data
+└─ Contains:
+   • Token A Mint address
+   • Token B Mint address
+   • Vault A address (where Token A reserves are held)
+   • Vault B address (where Token B reserves are held)
+   • LP Mint address (for liquidity provider tokens)
+   • Fee rate (0.3% = 30 basis points)
+   • Total LP supply
+   • PDA bump seeds
+
+───────────────────────────────────────────────────────────────────
+
+VAULT A: 2h37C9QfEKkiqTR3pUCGy2bbSXPif6zDvpecPxBY9P4X
+├─ Type: SPL Token Account (PDA owned by pool)
+├─ Token Mint: 3dgFmTQPvuzGAUvHMEgQP6nVoSurv1pHXwnmbtU3gT1m (Token A)
+├─ Owner: 8AP5aG8B6nWLAJQBpRq3kUQjLo1bn2KufRzCpPhZMp23 (Pool controls it)
+├─ Purpose: Holds all Token A reserves for the pool
+└─ Usage:
+   • When users add liquidity → Token A deposited here
+   • When users swap Token B for A → Token A withdrawn from here
+   • Current balance determines Token A reserve in AMM formula
+
+───────────────────────────────────────────────────────────────────
+
+VAULT B: AKL2fduNpMXhXdqjstMzjwxFVj4rtBCbrLbYqw8zij7
+├─ Type: SPL Token Account (PDA owned by pool)
+├─ Token Mint: ExkL8PS4kWzMxszwF41vHx2NAdKvMTrmWFvKhP1Zb2G7 (Token B)
+├─ Owner: 8AP5aG8B6nWLAJQBpRq3kUQjLo1bn2KufRzCpPhZMp23 (Pool controls it)
+├─ Purpose: Holds all Token B reserves for the pool
+└─ Usage:
+   • When users add liquidity → Token B deposited here
+   • When users swap Token A for B → Token B withdrawn from here
+   • Current balance determines Token B reserve in AMM formula
+
+───────────────────────────────────────────────────────────────────
+
+LP MINT: G6A1QpduKLTzNeG9iBazZkonzurWELPxhLEEDt7B3DH4
+├─ Type: SPL Token Mint (PDA - Liquidity Provider token)
+├─ Program: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA (SPL Token)
+├─ Mint Authority: 8AP5aG8B6nWLAJQBpRq3kUQjLo1bn2KufRzCpPhZMp23 (Pool)
+├─ Purpose: Represents ownership shares in the pool
+└─ Usage:
+   • When users add liquidity → LP tokens minted to user
+   • When users remove liquidity → LP tokens burned from user
+   • LP token amount / Total LP supply = User's % share of pool
+   • Share determines how much Token A & B user can withdraw
+
+═══════════════════════════════════════════════════════════════════
+HOW THEY WORK TOGETHER
+═══════════════════════════════════════════════════════════════════
+
+1. ADD LIQUIDITY:
+   User deposits Token A + Token B
+   → Tokens go to Vault A & Vault B
+   → Pool mints LP tokens to user
+   → User's LP tokens = proof of ownership
+
+2. SWAP (e.g., Token A → Token B):
+   User sends Token A to Vault A
+   → Pool calculates output using AMM formula (x * y = k)
+   → Pool sends Token B from Vault B to user
+   → Fee (0.3%) stays in pool, benefiting LP holders
+
+3. REMOVE LIQUIDITY:
+   User burns LP tokens
+   → Pool calculates user's share (LP tokens / Total LP)
+   → Pool sends proportional Token A from Vault A
+   → Pool sends proportional Token B from Vault B
+
+═══════════════════════════════════════════════════════════════════
+
+pool=3E2iwPv1xPfqCk8xB5gWWA7H5dPmBaW3QbQm63RWJEPq

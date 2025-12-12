@@ -158,24 +158,24 @@ export const SwapCard: FC<Props> = ({ poolAddress }) => {
               Balance: {fromBaseUnits(tokenInBalance).toFixed(4)}
             </span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <input
               type="number"
               value={amountIn}
               onChange={(e) => setAmountIn(e.target.value)}
               placeholder="0.0"
-              className="flex-1 bg-transparent text-2xl text-white outline-none"
+              className="flex-1 bg-transparent text-2xl text-white outline-none min-w-0"
             />
-            <button
-              onClick={handleMaxInput}
-              className="text-xs text-primary-400 hover:text-primary-300 px-2 py-1 rounded bg-primary-600/20"
-            >
-              MAX
-            </button>
-            <div className="bg-dark-700 px-3 py-2 rounded-lg">
-              <span className="text-white font-medium">
-                {tokenInMint ? shortenAddress(tokenInMint) : 'Token A'}
-              </span>
+            <div className="flex flex-col gap-2">
+              <button
+                onClick={handleMaxInput}
+                className="text-xs text-primary-400 hover:text-primary-300 px-2 py-1 rounded bg-primary-600/20 flex-shrink-0"
+              >
+                MAX
+              </button>
+              <div className="text-white font-semibold text-xs text-center overflow-hidden text-ellipsis whitespace-nowrap">
+                {tokenInMint ? shortenAddress(tokenInMint, 6) : 'Token A'}
+              </div>
             </div>
           </div>
         </div>
@@ -210,18 +210,18 @@ export const SwapCard: FC<Props> = ({ poolAddress }) => {
               Balance: {fromBaseUnits(tokenOutBalance).toFixed(4)}
             </span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <input
               type="number"
               value={amountOut}
               readOnly
               placeholder="0.0"
-              className="flex-1 bg-transparent text-2xl text-white outline-none"
+              className="flex-1 bg-transparent text-2xl text-white outline-none min-w-0"
             />
-            <div className="bg-dark-700 px-3 py-2 rounded-lg">
-              <span className="text-white font-medium">
-                {tokenOutMint ? shortenAddress(tokenOutMint) : 'Token B'}
-              </span>
+            <div className="bg-dark-700 px-3 py-2 rounded-lg flex-shrink-0 w-[140px]">
+              <div className="text-white font-semibold text-xs text-center overflow-hidden text-ellipsis whitespace-nowrap">
+                {tokenOutMint ? shortenAddress(tokenOutMint, 6) : 'Token B'}
+              </div>
             </div>
           </div>
         </div>

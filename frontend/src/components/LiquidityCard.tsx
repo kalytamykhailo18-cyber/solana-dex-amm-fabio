@@ -204,15 +204,17 @@ export const LiquidityCard: FC<Props> = ({ poolAddress }) => {
                 placeholder="0.0"
                 className="flex-1 bg-transparent text-xl text-white outline-none"
               />
-              <button
-                onClick={() => setAmountA(fromBaseUnits(tokenABalance).toString())}
-                className="text-xs text-primary-400 hover:text-primary-300 px-2 py-1 rounded bg-primary-600/20"
-              >
-                MAX
-              </button>
-              <span className="text-gray-400 text-sm">
-                {poolData ? shortenAddress(poolData.tokenAMint) : '-'}
-              </span>
+              <div className="flex flex-col">
+                <button
+                  onClick={() => setAmountA(fromBaseUnits(tokenABalance).toString())}
+                  className="text-xs text-primary-400 hover:text-primary-300 px-2 py-1 rounded bg-primary-600/20"
+                >
+                  MAX
+                </button>
+                <span className="text-gray-400 text-sm">
+                  {poolData ? shortenAddress(poolData.tokenAMint) : '-'}
+                </span>
+              </div>
             </div>
           </div>
 
@@ -241,15 +243,17 @@ export const LiquidityCard: FC<Props> = ({ poolAddress }) => {
                 placeholder="0.0"
                 className="flex-1 bg-transparent text-xl text-white outline-none"
               />
-              <button
-                onClick={() => setAmountB(fromBaseUnits(tokenBBalance).toString())}
-                className="text-xs text-primary-400 hover:text-primary-300 px-2 py-1 rounded bg-primary-600/20"
-              >
-                MAX
-              </button>
-              <span className="text-gray-400 text-sm">
-                {poolData ? shortenAddress(poolData.tokenBMint) : '-'}
-              </span>
+              <div className="flex flex-col">
+                <button
+                  onClick={() => setAmountB(fromBaseUnits(tokenBBalance).toString())}
+                  className="text-xs text-primary-400 hover:text-primary-300 px-2 py-1 rounded bg-primary-600/20"
+                >
+                  MAX
+                </button>
+                <span className="text-gray-400 text-sm">
+                  {poolData ? shortenAddress(poolData.tokenBMint) : '-'}
+                </span>
+              </div>
             </div>
           </div>
 
