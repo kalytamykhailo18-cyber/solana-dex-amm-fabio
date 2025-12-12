@@ -95,7 +95,8 @@ export const usePool = () => {
         program.programId
       );
 
-      const tx = await program.methods
+      // Step 1: Initialize pool + vault A
+      const tx1 = await program.methods
         .initializePool(feeRateBps)
         .accounts({
           payer: wallet.publicKey,
@@ -103,15 +104,30 @@ export const usePool = () => {
           tokenAMint,
           tokenBMint,
           tokenAVault,
+          tokenProgram: TOKEN_PROGRAM_ID,
+          systemProgram: SystemProgram.programId,
+        })
+        .rpc();
+
+      console.log('Pool initialized (step 1/2), tx:', tx1);
+
+      // Step 2: Initialize vault B + LP mint
+      const tx2 = await program.methods
+        .initializeLpMint()
+        .accounts({
+          payer: wallet.publicKey,
+          pool: poolPda,
+          tokenBMint,
           tokenBVault,
           lpMint,
           tokenProgram: TOKEN_PROGRAM_ID,
           systemProgram: SystemProgram.programId,
-          rent: SYSVAR_RENT_PUBKEY,
         })
         .rpc();
 
-      return { tx, poolPda };
+      console.log('Pool initialized (step 2/2), tx:', tx2);
+
+      return { tx: tx2, poolPda };
     } finally {
       setLoading(false);
     }

@@ -1,5 +1,5 @@
-// IDL compatible with Anchor 0.30.1
-// Using legacy format that works with Program constructor
+// IDL for DEX program with two-step pool initialization
+// Updated for stack overflow fix
 
 export type Dex = {
   version: string;
@@ -7,27 +7,39 @@ export type Dex = {
   instructions: any[];
   accounts: any[];
   errors: any[];
+  address: string;
 };
 
 export const IDL: Dex = {
   version: '0.1.0',
   name: 'dex',
+  address: 'EZDyb8s4DgMksN6aPx7gbeZ8B7SjWms3YuXu3VgUT11T',
   instructions: [
     {
       name: 'initializePool',
       accounts: [
+        { name: 'payer', isMut: true, isSigner: true },
         { name: 'pool', isMut: true, isSigner: false },
         { name: 'tokenAMint', isMut: false, isSigner: false },
         { name: 'tokenBMint', isMut: false, isSigner: false },
         { name: 'tokenAVault', isMut: true, isSigner: false },
-        { name: 'tokenBVault', isMut: true, isSigner: false },
-        { name: 'lpMint', isMut: true, isSigner: false },
-        { name: 'payer', isMut: true, isSigner: true },
         { name: 'tokenProgram', isMut: false, isSigner: false },
         { name: 'systemProgram', isMut: false, isSigner: false },
-        { name: 'rent', isMut: false, isSigner: false },
       ],
       args: [{ name: 'feeRateBps', type: 'u16' }],
+    },
+    {
+      name: 'initializeLpMint',
+      accounts: [
+        { name: 'payer', isMut: true, isSigner: true },
+        { name: 'pool', isMut: true, isSigner: false },
+        { name: 'tokenBMint', isMut: false, isSigner: false },
+        { name: 'tokenBVault', isMut: true, isSigner: false },
+        { name: 'lpMint', isMut: true, isSigner: false },
+        { name: 'tokenProgram', isMut: false, isSigner: false },
+        { name: 'systemProgram', isMut: false, isSigner: false },
+      ],
+      args: [],
     },
     {
       name: 'addLiquidity',
@@ -96,19 +108,20 @@ export const IDL: Dex = {
           { name: 'tokenBVault', type: 'publicKey' },
           { name: 'lpMint', type: 'publicKey' },
           { name: 'feeRateBps', type: 'u16' },
-          { name: 'totalLpSupply', type: 'u64' },
           { name: 'bump', type: 'u8' },
+          { name: 'lpMintBump', type: 'u8' },
+          { name: 'totalLpSupply', type: 'u64' },
         ],
       },
     },
   ],
   errors: [
-    { code: 6000, name: 'InvalidFeeRate', msg: 'Invalid fee rate' },
-    { code: 6001, name: 'ZeroAmount', msg: 'Amount must be greater than zero' },
-    { code: 6002, name: 'SlippageExceeded', msg: 'Slippage tolerance exceeded' },
-    { code: 6003, name: 'InsufficientLiquidity', msg: 'Insufficient liquidity' },
-    { code: 6004, name: 'MathOverflow', msg: 'Math operation overflow' },
-    { code: 6005, name: 'InvalidTokenMint', msg: 'Invalid token mint' },
-    { code: 6006, name: 'InvalidPoolState', msg: 'Invalid pool state' },
+    { code: 6000, name: 'InvalidFeeRate', msg: 'Fee rate must be <= 1000 bps (10%)' },
+    { code: 6001, name: 'InvalidTokenMint', msg: 'Invalid token mint' },
+    { code: 6002, name: 'InvalidPoolState', msg: 'Invalid pool state' },
+    { code: 6003, name: 'ZeroAmount', msg: 'Amount must be greater than zero' },
+    { code: 6004, name: 'InsufficientLiquidity', msg: 'Insufficient liquidity in pool' },
+    { code: 6005, name: 'SlippageExceeded', msg: 'Slippage tolerance exceeded' },
+    { code: 6006, name: 'MathOverflow', msg: 'Math operation overflow' },
   ],
 };
