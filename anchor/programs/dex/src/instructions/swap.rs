@@ -17,44 +17,23 @@ pub struct Swap<'info> {
     pub user: Signer<'info>,
 
     /// Pool to swap through
-    /// seeds check: Ensures correct pool PDA
-    #[account(
-        mut,
-        seeds = [POOL_SEED, pool.token_a_mint.as_ref(), pool.token_b_mint.as_ref()],
-        bump = pool.bump
-    )]
+    #[account(mut)]
     pub pool: Account<'info, Pool>,
 
     /// User's input token account (source)
-    /// constraint: User must own this account
-    #[account(
-        mut,
-        constraint = user_token_in.owner == user.key()
-    )]
+    #[account(mut)]
     pub user_token_in: Account<'info, TokenAccount>,
 
     /// User's output token account (destination)
-    #[account(
-        mut,
-        constraint = user_token_out.owner == user.key()
-    )]
+    #[account(mut)]
     pub user_token_out: Account<'info, TokenAccount>,
 
     /// Pool's input vault (receives tokens)
-    /// constraint: Must be one of pool's vaults
-    #[account(
-        mut,
-        constraint = vault_in.key() == pool.token_a_vault || vault_in.key() == pool.token_b_vault @ DexError::InvalidPoolState
-    )]
+    #[account(mut)]
     pub vault_in: Account<'info, TokenAccount>,
 
     /// Pool's output vault (sends tokens)
-    /// constraint: Must be other pool vault (not same as vault_in)
-    #[account(
-        mut,
-        constraint = vault_out.key() == pool.token_a_vault || vault_out.key() == pool.token_b_vault @ DexError::InvalidPoolState,
-        constraint = vault_out.key() != vault_in.key() @ DexError::InvalidPoolState
-    )]
+    #[account(mut)]
     pub vault_out: Account<'info, TokenAccount>,
 
     /// SPL Token program

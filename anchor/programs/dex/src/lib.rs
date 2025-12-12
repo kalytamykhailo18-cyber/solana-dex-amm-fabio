@@ -26,16 +26,27 @@ declare_id!("EZDyb8s4DgMksN6aPx7gbeZ8B7SjWms3YuXu3VgUT11T");
 pub mod dex {
     use super::*;
 
-    /// Creates a new liquidity pool for a token pair
+    /// Creates a new liquidity pool for a token pair (Step 1: Pool + Vaults)
     /// Like: Uniswap V2's createPair()
     ///
-    /// @param ctx - All accounts needed (pool, vaults, LP mint, payer)
+    /// @param ctx - Pool, vaults, token mints, payer
     /// @param fee_rate_bps - Fee in basis points (30 = 0.3%, max 1000 = 10%)
     ///
-    /// Creates: Pool account + 2 vaults + LP mint
-    /// Cost: ~0.0067 SOL
+    /// Creates: Pool account + 2 vaults
+    /// Cost: ~0.005 SOL
     pub fn initialize_pool(ctx: Context<InitializePool>, fee_rate_bps: u16) -> Result<()> {
         instructions::initialize_pool::handler(ctx, fee_rate_bps)
+    }
+
+    /// Initialize LP mint for pool (Step 2: LP Mint)
+    /// Must be called after initialize_pool
+    ///
+    /// @param ctx - Pool, LP mint, payer
+    ///
+    /// Creates: LP mint
+    /// Cost: ~0.002 SOL
+    pub fn initialize_lp_mint(ctx: Context<InitializeLpMint>) -> Result<()> {
+        instructions::initialize_lp_mint::handler(ctx)
     }
 
     /// Add liquidity to pool, receive LP tokens

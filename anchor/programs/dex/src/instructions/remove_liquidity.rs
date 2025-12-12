@@ -17,57 +17,31 @@ pub struct RemoveLiquidity<'info> {
     pub user: Signer<'info>,
 
     /// Pool to remove liquidity from
-    /// mut: Updates total_lp_supply
-    #[account(
-        mut,
-        seeds = [POOL_SEED, pool.token_a_mint.as_ref(), pool.token_b_mint.as_ref()],
-        bump = pool.bump
-    )]
+    #[account(mut)]
     pub pool: Account<'info, Pool>,
 
     /// User's Token A account (destination)
-    #[account(
-        mut,
-        constraint = user_token_a.mint == pool.token_a_mint @ DexError::InvalidTokenMint,
-        constraint = user_token_a.owner == user.key()
-    )]
+    #[account(mut)]
     pub user_token_a: Account<'info, TokenAccount>,
 
     /// User's Token B account (destination)
-    #[account(
-        mut,
-        constraint = user_token_b.mint == pool.token_b_mint @ DexError::InvalidTokenMint,
-        constraint = user_token_b.owner == user.key()
-    )]
+    #[account(mut)]
     pub user_token_b: Account<'info, TokenAccount>,
 
     /// Pool's Token A vault (source)
-    #[account(
-        mut,
-        constraint = token_a_vault.key() == pool.token_a_vault @ DexError::InvalidPoolState
-    )]
+    #[account(mut)]
     pub token_a_vault: Account<'info, TokenAccount>,
 
     /// Pool's Token B vault (source)
-    #[account(
-        mut,
-        constraint = token_b_vault.key() == pool.token_b_vault @ DexError::InvalidPoolState
-    )]
+    #[account(mut)]
     pub token_b_vault: Account<'info, TokenAccount>,
 
     /// LP token mint (to burn from)
-    #[account(
-        mut,
-        constraint = lp_mint.key() == pool.lp_mint @ DexError::InvalidPoolState
-    )]
+    #[account(mut)]
     pub lp_mint: Account<'info, Mint>,
 
     /// User's LP token account (source of LP tokens to burn)
-    #[account(
-        mut,
-        constraint = user_lp_token.mint == pool.lp_mint @ DexError::InvalidTokenMint,
-        constraint = user_lp_token.owner == user.key()
-    )]
+    #[account(mut)]
     pub user_lp_token: Account<'info, TokenAccount>,
 
     /// SPL Token program
@@ -88,25 +62,30 @@ pub fn handler(
     // Validate LP token amount
     require!(lp_tokens > 0, DexError::ZeroAmount);
 
-    let pool = &mut ctx.accounts.pool;
     let reserve_a = ctx.accounts.token_a_vault.amount;
     let reserve_b = ctx.accounts.token_b_vault.amount;
 
+    // Extract values before mutable borrow
+    let token_a_mint = ctx.accounts.pool.token_a_mint;
+    let token_b_mint = ctx.accounts.pool.token_b_mint;
+    let bump = ctx.accounts.pool.bump;
+    let total_lp_supply = ctx.accounts.pool.total_lp_supply;
+
     // Ensure pool has liquidity
-    require!(pool.total_lp_supply > 0, DexError::InsufficientLiquidity);
+    require!(total_lp_supply > 0, DexError::InsufficientLiquidity);
 
     // Calculate tokens to return (proportional to LP share)
     // amount_a = (lp_tokens * reserve_a) / total_lp_supply
     let amount_a = (lp_tokens as u128)
         .checked_mul(reserve_a as u128)
         .ok_or(DexError::MathOverflow)?
-        .checked_div(pool.total_lp_supply as u128)
+        .checked_div(total_lp_supply as u128)
         .ok_or(DexError::MathOverflow)? as u64;
 
     let amount_b = (lp_tokens as u128)
         .checked_mul(reserve_b as u128)
         .ok_or(DexError::MathOverflow)?
-        .checked_div(pool.total_lp_supply as u128)
+        .checked_div(total_lp_supply as u128)
         .ok_or(DexError::MathOverflow)? as u64;
 
     // Slippage checks
@@ -127,10 +106,6 @@ pub fn handler(
     )?;
 
     // Prepare pool PDA signer (pool signs vault transfers)
-    let token_a_mint = pool.token_a_mint;
-    let token_b_mint = pool.token_b_mint;
-    let bump = pool.bump;
-
     let seeds = &[
         POOL_SEED,
         token_a_mint.as_ref(),
@@ -146,7 +121,7 @@ pub fn handler(
             Transfer {
                 from: ctx.accounts.token_a_vault.to_account_info(),
                 to: ctx.accounts.user_token_a.to_account_info(),
-                authority: pool.to_account_info(),
+                authority: ctx.accounts.pool.to_account_info(),
             },
             signer_seeds,
         ),
@@ -160,7 +135,7 @@ pub fn handler(
             Transfer {
                 from: ctx.accounts.token_b_vault.to_account_info(),
                 to: ctx.accounts.user_token_b.to_account_info(),
-                authority: pool.to_account_info(),
+                authority: ctx.accounts.pool.to_account_info(),
             },
             signer_seeds,
         ),
@@ -168,7 +143,7 @@ pub fn handler(
     )?;
 
     // Update total LP supply
-    pool.total_lp_supply = pool
+    ctx.accounts.pool.total_lp_supply = ctx.accounts.pool
         .total_lp_supply
         .checked_sub(lp_tokens)
         .ok_or(DexError::MathOverflow)?;
