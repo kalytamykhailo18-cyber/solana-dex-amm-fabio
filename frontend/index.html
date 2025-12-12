@@ -9,6 +9,11 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Buffer polyfill must be available before any Solana/Anchor code loads
+      window.global = window;
+      window.process = { env: {} };
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

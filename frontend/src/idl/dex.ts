@@ -1,16 +1,19 @@
-// Temporary IDL - Replace with generated IDL after running 'anchor build'
+// IDL compatible with Anchor 0.30.1
+// Using legacy format that works with Program constructor
+
 export type Dex = {
-  version: '0.1.0';
-  name: 'dex';
+  version: string;
+  name: string;
+  address: string;
   instructions: any[];
   accounts: any[];
   errors: any[];
 };
 
-export const IDL: any = {
-  address: 'EZDyb8s4DgMksN6aPx7gbeZ8B7SjWms3YuXu3VgUT11T',
+export const IDL: Dex = {
   version: '0.1.0',
   name: 'dex',
+  address: 'EZDyb8s4DgMksN6aPx7gbeZ8B7SjWms3YuXu3VgUT11T',
   instructions: [
     {
       name: 'initializePool',

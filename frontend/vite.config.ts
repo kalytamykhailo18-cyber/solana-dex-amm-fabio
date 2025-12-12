@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -23,7 +24,17 @@ export default defineConfig({
       define: {
         global: 'globalThis',
       },
+      plugins: [
+        NodeGlobalsPolyfillPlugin({
+          buffer: true,
+        }),
+      ],
     },
-    include: ['buffer', 'process'],
+    include: ['buffer', 'process', '@coral-xyz/anchor'],
+  },
+  build: {
+    rollupOptions: {
+      plugins: [],
+    },
   },
 })
