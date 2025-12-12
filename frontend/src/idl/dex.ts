@@ -4,7 +4,6 @@
 export type Dex = {
   version: string;
   name: string;
-  address: string;
   instructions: any[];
   accounts: any[];
   errors: any[];
@@ -13,7 +12,6 @@ export type Dex = {
 export const IDL: Dex = {
   version: '0.1.0',
   name: 'dex',
-  address: 'EZDyb8s4DgMksN6aPx7gbeZ8B7SjWms3YuXu3VgUT11T',
   instructions: [
     {
       name: 'initializePool',

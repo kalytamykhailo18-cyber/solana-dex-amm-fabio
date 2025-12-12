@@ -1,12 +1,50 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import { LAMPORTS_PER_SOL } from '@solana/web3.js';
 import { config } from '../config/env';
 
 export const Header: FC = () => {
   const location = useLocation();
+  const { connection } = useConnection();
+  const { publicKey } = useWallet();
+  const [balance, setBalance] = useState<number | null>(null);
 
   const isActive = (path: string) => location.pathname === path;
+
+  useEffect(() => {
+    if (!publicKey) {
+      setBalance(null);
+      return;
+    }
+
+    // Fetch initial balance
+    const fetchBalance = async () => {
+      try {
+        const bal = await connection.getBalance(publicKey);
+        setBalance(bal / LAMPORTS_PER_SOL);
+      } catch (err) {
+        console.error('Failed to fetch balance:', err);
+        setBalance(null);
+      }
+    };
+
+    fetchBalance();
+
+    // Subscribe to balance changes
+    const subscriptionId = connection.onAccountChange(
+      publicKey,
+      (accountInfo) => {
+        setBalance(accountInfo.lamports / LAMPORTS_PER_SOL);
+      },
+      'confirmed'
+    );
+
+    return () => {
+      connection.removeAccountChangeListener(subscriptionId);
+    };
+  }, [publicKey, connection]);
 
   return (
     <header className="bg-black border-b border-silver-800">
@@ -57,7 +95,13 @@ export const Header: FC = () => {
             >
               Create Pool
             </Link>
-            <div className="animate-fade-left animate-fast animate-delay-500">
+            <div className="flex items-center gap-3 animate-fade-left animate-fast animate-delay-500">
+              {publicKey && balance !== null && (
+                <div className="flex items-center gap-2 bg-dark-800 px-3 py-2 rounded-lg border border-dark-700">
+                  <span className="text-gold-400 font-medium">{balance.toFixed(4)}</span>
+                  <span className="text-silver-400 text-sm">SOL</span>
+                </div>
+              )}
               <WalletMultiButton />
             </div>
           </nav>
