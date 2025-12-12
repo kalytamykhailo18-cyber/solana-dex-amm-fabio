@@ -84,9 +84,32 @@ export const CreatePoolCard: FC<Props> = ({ onPoolCreated }) => {
       if (onPoolCreated) {
         onPoolCreated(poolPda.toBase58());
       }
-    } catch (error: unknown) {
+    } catch (error: any) {
       console.error('Failed to create pool:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Failed to create pool';
+
+      // Log transaction logs if available for debugging
+      if (error?.logs) {
+        console.error('Transaction logs:', error.logs);
+      }
+      if (error?.transactionLogs) {
+        console.error('Transaction logs:', error.transactionLogs);
+      }
+
+      let errorMessage = 'Failed to create pool';
+      if (error?.message) {
+        errorMessage = error.message;
+      }
+      // Extract meaningful error from transaction logs
+      const logs = error?.logs || error?.transactionLogs || [];
+      if (logs.length > 0) {
+        const errorLog = logs.find((log: string) =>
+          log.includes('Error') || log.includes('failed') || log.includes('custom program error')
+        );
+        if (errorLog) {
+          console.error('Found error log:', errorLog);
+        }
+      }
+
       toast.error(errorMessage);
     }
   };
