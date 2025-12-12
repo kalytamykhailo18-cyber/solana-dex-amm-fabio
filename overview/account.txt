@@ -103,3 +103,5 @@ HOW THEY WORK TOGETHER
 ═══════════════════════════════════════════════════════════════════
 
 pool=3E2iwPv1xPfqCk8xB5gWWA7H5dPmBaW3QbQm63RWJEPq
+
+1414.21356
